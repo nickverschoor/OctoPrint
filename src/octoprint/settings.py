@@ -94,7 +94,7 @@ default_settings = {
 		"longRunningCommands": ["G4", "G28", "G29", "G30", "G32", "M400", "M226"],
 		"checksumRequiringCommands": ["M110"],
 		"helloCommand": "M110 N0",
-		"disconnectOnErrors": True,
+		"disconnectOnErrors": False,
 		"ignoreErrorsFromFirmware": False,
 		"logResends": True,
 		"supportResendsWithoutOk": False,
@@ -158,7 +158,7 @@ default_settings = {
 		"cleanTmpAfterDays": 7
 	},
 	"gcodeViewer": {
-		"enabled": True,
+		"enabled": False,
 		"mobileSizeThreshold": 2 * 1024 * 1024, # 2MB
 		"sizeThreshold": 20 * 1024 * 1024, # 20MB
 	},
@@ -171,7 +171,7 @@ default_settings = {
 		"alwaysSendChecksum": False,
 		"sendChecksumWithUnknownCommands": False,
 		"unknownCommandsNeedAck": False,
-		"sdSupport": True,
+		"sdSupport": False,
 		"sdRelativePath": False,
 		"sdAlwaysAvailable": False,
 		"swallowOkAfterResend": True,
