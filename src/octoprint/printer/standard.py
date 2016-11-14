@@ -422,6 +422,7 @@ class Printer(PrinterInterface, comm.MachineComPrintCallback):
 		if self._comm.isPaused():
 			return
 
+		self._comm.sendCommand("suspend") """for Smoothieware"""
 		self._comm.setPause(True)
 
 	def resume_print(self):
@@ -434,6 +435,7 @@ class Printer(PrinterInterface, comm.MachineComPrintCallback):
 		if not self._comm.isPaused():
 			return
 
+		self._comm.sendCommand("resume") """for Smoothieware"""
 		self._comm.setPause(False)
 
 	def cancel_print(self):
@@ -443,6 +445,7 @@ class Printer(PrinterInterface, comm.MachineComPrintCallback):
 		if self._comm is None:
 			return
 
+		self._comm.sendCommand("abort") """for Smoothieware"""
 		self._comm.cancelPrint()
 
 		# reset progress, height, print time

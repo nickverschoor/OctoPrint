@@ -211,7 +211,7 @@ default_settings = {
 	},
 	"printerParameters": {
 		"pauseTriggers": [],
-		"defaultExtrusionLength": 5
+		"defaultExtrusionLength": 100
 	},
 	"appearance": {
 		"name": "",
