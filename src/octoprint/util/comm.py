@@ -978,29 +978,57 @@ class MachineCom(object):
 					self._timeout = get_new_timeout("communication", self._timeout_intervals)
 
 				##~~ debugging output handling
-				if line.startswith("//"):
-					debugging_output = line[2:].strip()
-					if debugging_output.startswith("action:"):
-						action_command = debugging_output[len("action:"):].strip()
+#				if line.startswith("//"):
+#					debugging_output = line[2:].strip()
+#					if debugging_output.startswith("action:"):
+#						action_command = debugging_output[len("action:"):].strip()
+#
+#						if action_command == "pause":
+#							self._log("Pausing on request of the printer...")
+#							self.setPause(True)
+#						elif action_command == "resume":
+#							self._log("Resuming on request of the printer...")
+#							self.setPause(False)
+#						elif action_command == "disconnect":
+#							self._log("Disconnecting on request of the printer...")
+#							self._callback.on_comm_force_disconnect()
+#						else:
+#							for hook in self._printer_action_hooks:
+#								try:
+#									self._printer_action_hooks[hook](self, line, action_command)
+#								except:
+#									self._logger.exception("Error while calling hook {} with action command {}".format(self._printer_action_hooks[hook], action_command))
+#									continue
+#					else:
+#						continue
 
-						if action_command == "pause":
-							self._log("Pausing on request of the printer...")
-							self.setPause(True)
-						elif action_command == "resume":
-							self._log("Resuming on request of the printer...")
-							self.setPause(False)
-						elif action_command == "disconnect":
-							self._log("Disconnecting on request of the printer...")
-							self._callback.on_comm_force_disconnect()
-						else:
-							for hook in self._printer_action_hooks:
-								try:
-									self._printer_action_hooks[hook](self, line, action_command)
-								except:
-									self._logger.exception("Error while calling hook {} with action command {}".format(self._printer_action_hooks[hook], action_command))
-									continue
-					else:
-						continue
+				if line.startswith("#"):
+					debugging_output = line[len("#"):].strip()
+					if debugging_output.startswith("01"):
+						action_command = debugging_output[len("01"):].strip()
+						self._log("Printer halted...")
+					elif debugging_output.startswith("020"):
+						action_command = debugging_output[len("020"):].strip()
+						self.setPause(True)
+						if action_command == "0":
+							self._log("Printer paused...")
+						elif action_command == "1":
+							self._log("Printer paused by user...")
+						elif action_command == "2":
+							self._log("Printer paused due out of filament...")
+						elif action_command == "3":
+							self._log("Printer paused due filament slip(will try auto-resume)...")
+						elif action_command == "4":
+							self._log("Printer paused due temp warning...")
+					elif debugging_output.startswith("025"):
+						action_command = debugging_output[len("020"):].strip()
+						self.setPause(False)
+						if action_command == "0":
+							self._log("Printer resumed...")
+						elif action_command == "1":
+							self._log("Printer resumed by user...")
+						elif action_command == "2":
+							self._log("Printer resumed by firmware...")
 
 				def convert_line(line):
 					if line is None:
