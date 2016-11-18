@@ -1008,31 +1008,31 @@ class MachineCom(object):
 					#	old_status = debugging_output
 					#new_status = debugging_output
 					#if new_status != old_status:
-						if debugging_output.startswith("01"):
-							action_command = debugging_output[len("01"):].strip()
-							self._log("Printer halted...")
-						elif debugging_output.startswith("020"):
-							action_command = debugging_output[len("020"):].strip()
-							self.setPause(True)
-							if action_command == "0":
-								self._log("Printer paused...")
-							elif action_command == "1":
-								self._log("Printer paused by user...")
-							elif action_command == "2":
-								self._log("Printer paused due out of filament...")
-							elif action_command == "3":
-								self._log("Printer paused due filament slip(will try auto-resume)...")
-							elif action_command == "4":
-								self._log("Printer paused due temp warning...")
-						elif debugging_output.startswith("025"):
-							action_command = debugging_output[len("020"):].strip()
-							self.setPause(False)
-							if action_command == "0":
-								self._log("Printer resumed...")
-							elif action_command == "1":
-								self._log("Printer resumed by user...")
-							elif action_command == "2":
-								self._log("Printer resumed by firmware...")
+					if debugging_output.startswith("01"):
+						action_command = debugging_output[len("01"):].strip()
+						self._log("Printer halted...")
+					elif debugging_output.startswith("020"):
+						action_command = debugging_output[len("020"):].strip()
+						self.setPause(True)
+						if action_command == "0":
+							self._log("Printer paused...")
+						elif action_command == "1":
+							self._log("Printer paused by user...")
+						elif action_command == "2":
+							self._log("Printer paused due out of filament...")
+						elif action_command == "3":
+							self._log("Printer paused due filament slip(will try auto-resume)...")
+						elif action_command == "4":
+							self._log("Printer paused due temp warning...")
+					elif debugging_output.startswith("025"):
+						action_command = debugging_output[len("020"):].strip()
+						self.setPause(False)
+						if action_command == "0":
+							self._log("Printer resumed...")
+						elif action_command == "1":
+							self._log("Printer resumed by user...")
+						elif action_command == "2":
+							self._log("Printer resumed by firmware...")
 					#old_status = new_status
 
 				def convert_line(line):
