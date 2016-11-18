@@ -1004,7 +1004,6 @@ class MachineCom(object):
 
 				if line.startswith("#"):
 					debugging_output = line[len("#"):].strip()
-					def old_output
 					if old_output is None:
 						old_output = "0000"
 					if debugging_output!=old_output:
