@@ -1004,10 +1004,10 @@ class MachineCom(object):
 
 				if line.startswith("#"):
 					debugging_output = line[len("#"):].strip()
-					if not old_status:
-						old_status = debugging_output
-					new_status = debugging_output
-					if new_status != old_status:
+					#if not old_status:
+					#	old_status = debugging_output
+					#new_status = debugging_output
+					#if new_status != old_status:
 						if debugging_output.startswith("01"):
 							action_command = debugging_output[len("01"):].strip()
 							self._log("Printer halted...")
@@ -1033,7 +1033,7 @@ class MachineCom(object):
 								self._log("Printer resumed by user...")
 							elif action_command == "2":
 								self._log("Printer resumed by firmware...")
-					old_status = new_status
+					#old_status = new_status
 
 				def convert_line(line):
 					if line is None:
