@@ -1004,7 +1004,7 @@ class MachineCom(object):
 
 				if line.startswith("#"):
 					debugging_output = line[len("#"):].strip()
-					if debugging_output==old_output, if not:
+					if debugging_output!=old_output:
 					#if debugging_output != old_status:
 						old_output = debugging_output
 						if debugging_output.startswith("01"):
