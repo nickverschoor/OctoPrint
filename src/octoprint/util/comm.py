@@ -1007,7 +1007,7 @@ class MachineCom(object):
 					if not old_status;
 						old_status = "9999"
 					new_status = debugging_output
-					if new_status not old_status:
+					if new_status != old_status:
 						if debugging_output.startswith("01"):
 							action_command = debugging_output[len("01"):].strip()
 							self._log("Printer halted...")
