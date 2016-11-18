@@ -1031,6 +1031,8 @@ class MachineCom(object):
 								self._log("Printer resumed by user...")
 							elif action_command == "2":
 								self._log("Printer resumed by firmware...")
+					else:
+						continue
 
 
 				def convert_line(line):
