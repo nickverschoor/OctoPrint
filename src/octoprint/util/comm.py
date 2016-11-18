@@ -33,6 +33,7 @@ except:
 	pass
 
 _logger = logging.getLogger(__name__)
+old_output = "9999"
 
 # a bunch of regexes we'll need for the communication parsing...
 
@@ -1004,7 +1005,6 @@ class MachineCom(object):
 
 				if line.startswith("#"):
 					debugging_output = line[len("#"):].strip()
-					old_status
 					if debugging_output != old_status:
 						old_output = debugging_output
 						if debugging_output.startswith("01"):
