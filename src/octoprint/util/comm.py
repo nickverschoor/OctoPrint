@@ -18,7 +18,7 @@ import octoprint.plugin
 #try:
 #	import cPickle as pickle
 #except ImportError:
-    import pickle
+import cPickle as pickle
 
 from collections import deque
 
@@ -1013,9 +1013,9 @@ class MachineCom(object):
 #					try:
 #					    old_output
 #					except NameError:
-				    f = open('store.pckl', 'rb')
-					old_output = pickle.load(f)
-					f.close()
+				    #f = open('store.p', 'rb')
+					old_output = pickle.load(open('store.p', 'rb'))
+					#f.close()
 					#try:
 					#	old_output
 					#except NameError:
@@ -1049,9 +1049,9 @@ class MachineCom(object):
 								self._log("Printer resumed by firmware...")
 						else:
 							continue
-						f = open('store.pckl', 'wb')
-						pickle.dump(debugging_output, f)
-						f.close()
+						#f = open('store.p', 'wb')
+						pickle.dump(debugging_output, open('store.p', 'wb'))
+						#f.close()
 
 				def convert_line(line):
 					if line is None:
