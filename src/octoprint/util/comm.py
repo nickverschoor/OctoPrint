@@ -15,6 +15,11 @@ import logging
 import serial
 import octoprint.plugin
 
+try:
+	import cPickle as pickle
+except ImportError:
+    import pickle
+
 from collections import deque
 
 from octoprint.util.avr_isp import stk500v2
@@ -1004,33 +1009,44 @@ class MachineCom(object):
 
 				if line.startswith("#"):
 					debugging_output = line[len("#"):].strip()
-					if debugging_output.startswith("01"):
-						action_command = debugging_output[len("01"):].strip()
-						self._log("Printer halted...")
-					elif debugging_output.startswith("020"):
-						action_command = debugging_output[len("020"):].strip()
-						self.setPause(True)
-						if action_command == "0":
-							self._log("Printer paused...")
-						elif action_command == "1":
-							self._log("Printer paused by user...")
-						elif action_command == "2":
-							self._log("Printer paused due out of filament...")
-						elif action_command == "3":
-							self._log("Printer paused due filament slip(will try auto-resume)...")
-						elif action_command == "4":
-							self._log("Printer paused due temp warning...")
-					elif debugging_output.startswith("025"):
-						action_command = debugging_output[len("020"):].strip()
-						self.setPause(False)
-						if action_command == "0":
-							self._log("Printer resumed...")
-						elif action_command == "1":
-							self._log("Printer resumed by user...")
-						elif action_command == "2":
-							self._log("Printer resumed by firmware...")
-					else:
-						continue
+					try:
+					    old_output
+					except NameError:
+					    f = open('store.pckl', 'rb')
+						old_output = pickle.load(f)
+						f.close()
+					if old_output != debugging_output:
+						if debugging_output.startswith("00") and old_output.startswith("025"):
+							self.setPause(False)
+						elif debugging_output.startswith("01"):
+							action_command = debugging_output[len("01"):].strip()
+							self._log("Printer halted...")
+						elif debugging_output.startswith("020"):
+							action_command = debugging_output[len("020"):].strip()
+							self.setPause(True)
+							if action_command == "0":
+								self._log("Printer paused...")
+							elif action_command == "1":
+								self._log("Printer paused by user...")
+							elif action_command == "2":
+								self._log("Printer paused due out of filament...")
+							elif action_command == "3":
+								self._log("Printer paused due filament slip(will try auto-resume)...")
+							elif action_command == "4":
+								self._log("Printer paused due temp warning...")
+						elif debugging_output.startswith("025"):
+							action_command = debugging_output[len("025"):].strip()
+							if action_command == "0":
+								self._log("Printer resumed...")
+							elif action_command == "1":
+								self._log("Printer resumed by user...")
+							elif action_command == "2":
+								self._log("Printer resumed by firmware...")
+						else:
+							continue
+						f = open('store.pckl', 'wb')
+						pickle.dump(debugging_output, f)
+						f.close()
 
 				def convert_line(line):
 					if line is None:
