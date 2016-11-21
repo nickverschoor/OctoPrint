@@ -1018,10 +1018,10 @@ class MachineCom(object):
 					#self._log("old output")
 					#self._log(old_output)
 					#f.close()
-					#try:
-					#	old_output
-					#except NameError:
-					#	old_output = "9999"
+					try:
+						old_output
+					except NameError:
+						old_output = "9999"
 					#if old_output != debugging_output:
 						#if debugging_output.startswith("00") and old_output.startswith("025"):
 						#	self.setPause(False)
@@ -1049,12 +1049,14 @@ class MachineCom(object):
 							self._log("Printer resumed by user...")
 						elif action_command == "2":
 							self._log("Printer resumed by firmware...")
+
+					old_output = debugging_output
 					#else:
 					#	continue
 						#f = open('store.p', 'wb')
-					pickle.dump(debugging_output, open('store.p', 'wb'), protocol=pickle.HIGHEST_PROTOCOL)
-					test_debug = pickle.load(open('store.p', 'rb'), protocol=pickle.HIGHEST_PROTOCOL)
-					self._log(test_debug)
+					#pickle.dump(debugging_output, open('store.p', 'wb'), protocol=pickle.HIGHEST_PROTOCOL)
+					#test_debug = pickle.load(open('store.p', 'rb'), protocol=pickle.HIGHEST_PROTOCOL)
+					#self._log(test_debug)
 						#f.close()
 
 				def convert_line(line):
