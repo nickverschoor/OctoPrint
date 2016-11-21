@@ -1049,8 +1049,8 @@ class MachineCom(object):
 							self._log("Printer resumed by user...")
 						elif action_command == "2":
 							self._log("Printer resumed by firmware...")
-					else:
-						continue
+					#else:
+					#	continue
 						#f = open('store.p', 'wb')
 					pickle.dump(debugging_output, open('store.p', 'wb'))
 					test_debug = pickle.load(open('store.p', 'rb'))
