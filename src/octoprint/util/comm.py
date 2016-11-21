@@ -1009,22 +1009,22 @@ class MachineCom(object):
 
 				if line.startswith("#"):
 					debugging_output = line[len("#"):].strip()
-					old_output = None
+					#old_output = None
 #					try:
 #					    old_output
 #					except NameError:
 				    #f = open('store.p', 'rb')
 					#old_output = pickle.load(open('store.p', 'rb'))
 					self._log("old output")
-					self._log(old_output)
+					#self._log(old_output)
 					#f.close()
 					#try:
 					#	old_output
 					#except NameError:
 					#	old_output = "9999"
-					if old_output != debugging_output:
-						if debugging_output.startswith("00") and old_output.startswith("025"):
-							self.setPause(False)
+					#if old_output != debugging_output:
+						#if debugging_output.startswith("00") and old_output.startswith("025"):
+						#	self.setPause(False)
 						elif debugging_output.startswith("01"):
 							action_command = debugging_output[len("01"):].strip()
 							self._log("Printer halted...")
