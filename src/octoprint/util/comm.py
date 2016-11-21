@@ -1015,6 +1015,8 @@ class MachineCom(object):
 #					except NameError:
 				    #f = open('store.p', 'rb')
 					old_output = pickle.load(open('store.p', 'rb'))
+					self._log("old output")
+					self._log(old_output)
 					#f.close()
 					#try:
 					#	old_output
