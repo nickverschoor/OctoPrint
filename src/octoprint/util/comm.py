@@ -1025,7 +1025,7 @@ class MachineCom(object):
 					#if old_output != debugging_output:
 						#if debugging_output.startswith("00") and old_output.startswith("025"):
 						#	self.setPause(False)
-					elif debugging_output.startswith("01"):
+					if debugging_output.startswith("01"):
 						action_command = debugging_output[len("01"):].strip()
 						self._log("Printer halted...")
 					elif debugging_output.startswith("020"):
