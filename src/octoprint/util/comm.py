@@ -1053,7 +1053,8 @@ class MachineCom(object):
 						continue
 						#f = open('store.p', 'wb')
 					pickle.dump(debugging_output, open('store.p', 'wb'))
-					self._log(pickle.load(open('store.p', 'rb')))
+					test_debug = pickle.load(open('store.p', 'rb'))
+					self._log(test_debug)
 						#f.close()
 
 				def convert_line(line):
