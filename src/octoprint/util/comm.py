@@ -1016,6 +1016,10 @@ class MachineCom(object):
 				    f = open('store.pckl', 'rb')
 					old_output = pickle.load(f)
 					f.close()
+					try:
+						old_output
+					except NameError:
+						old_output = "9999"
 					if old_output != debugging_output:
 						if debugging_output.startswith("00") and old_output.startswith("025"):
 							self.setPause(False)
