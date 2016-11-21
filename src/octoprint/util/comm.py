@@ -1014,8 +1014,8 @@ class MachineCom(object):
 #					    old_output
 #					except NameError:
 				    #f = open('store.p', 'rb')
-					old_output = pickle.load(open('store.p', 'rb'))
-					self._log("old output")
+					#old_output = pickle.load(open('store.p', 'rb'))
+					#self._log("old output")
 					#self._log(old_output)
 					#f.close()
 					#try:
@@ -1053,6 +1053,7 @@ class MachineCom(object):
 						continue
 						#f = open('store.p', 'wb')
 					pickle.dump(debugging_output, open('store.p', 'wb'))
+					self._log(pickle.load(open('store.p', 'rb')))
 						#f.close()
 
 				def convert_line(line):
