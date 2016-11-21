@@ -1009,13 +1009,13 @@ class MachineCom(object):
 
 				if line.startswith("#"):
 					debugging_output = line[len("#"):].strip()
-					old_output = "9999"
+#					old_output = "9999"
 #					try:
 #					    old_output
 #					except NameError:
-#					    f = open('store.pckl', 'rb')
-#						old_output = pickle.load(f)
-#						f.close()
+				    f = open('store.pckl', 'rb')
+					old_output = pickle.load(f)
+					f.close()
 					if old_output != debugging_output:
 						if debugging_output.startswith("00") and old_output.startswith("025"):
 							self.setPause(False)
@@ -1045,9 +1045,9 @@ class MachineCom(object):
 								self._log("Printer resumed by firmware...")
 						else:
 							continue
-#						f = open('store.pckl', 'wb')
-#						pickle.dump(debugging_output, f)
-#						f.close()
+						f = open('store.pckl', 'wb')
+						pickle.dump(debugging_output, f)
+						f.close()
 
 				def convert_line(line):
 					if line is None:
