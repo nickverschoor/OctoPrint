@@ -1052,8 +1052,8 @@ class MachineCom(object):
 					#else:
 					#	continue
 						#f = open('store.p', 'wb')
-					pickle.dump(debugging_output, open('store.p', 'wb'))
-					test_debug = pickle.load(open('store.p', 'rb'))
+					pickle.dump(debugging_output, open('store.p', 'wb'), protocol=pickle.HIGHEST_PROTOCOL)
+					test_debug = pickle.load(open('store.p', 'rb'), protocol=pickle.HIGHEST_PROTOCOL)
 					self._log(test_debug)
 						#f.close()
 
