@@ -1009,15 +1009,9 @@ class MachineCom(object):
 
 				if line.startswith("#"):
 					debugging_output = line[len("#"):].strip()
-					#old_output = None
-#					try:
-#					    old_output
-#					except NameError:
-				    #f = open('store.p', 'rb')
-					#old_output = pickle.load(open('store.p', 'rb'))
-					#self._log("old output")
-					#self._log(old_output)
-					#f.close()
+
+					self.sendCommand("status_res")
+
 					try:
 						old_output
 					except NameError:
