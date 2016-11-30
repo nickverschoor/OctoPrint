@@ -1010,12 +1010,17 @@ class MachineCom(object):
 				if line.startswith("#"):
 					debugging_output = line[len("#"):].strip()
 
-					self._sendCommand("status_res") #TODO: Test it!
-
 					try:
 						old_output
 					except NameError:
 						old_output = "9999"
+
+					if old_output == "9999":
+						self._changeState(self.STATE_OPERATIONAL)
+
+					self._do_send_without_checksum("status_res") #TODO: Test it!
+
+
 					if old_output != debugging_output:
 						if debugging_output.startswith("00") and old_output.startswith("025"):
 							self.setPause(False)
