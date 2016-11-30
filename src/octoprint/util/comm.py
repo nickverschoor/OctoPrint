@@ -1010,7 +1010,7 @@ class MachineCom(object):
 				if line.startswith("#"):
 					debugging_output = line[len("#"):].strip()
 
-					#self.sendCommand("status_res")
+					self._sendCommand("status_res") #TODO: Test it!
 
 					try:
 						old_output
