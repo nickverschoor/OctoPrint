@@ -93,7 +93,7 @@ default_settings = {
 		"additionalPorts": [],
 		"longRunningCommands": ["G4", "G28", "G29", "G30", "G32", "M400", "M226"],
 		"checksumRequiringCommands": ["M110"],
-		"helloCommand": "",    #"M110 N0"
+		"helloCommand": "client_ready",    #"M110 N0"
 		"disconnectOnErrors": False,
 		"ignoreErrorsFromFirmware": False,
 		"logResends": True,
