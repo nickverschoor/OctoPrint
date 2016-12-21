@@ -1056,7 +1056,7 @@ class MachineCom(object):
 
 					old_output = debugging_output
 
-					continue
+					break
 					#else:
 					#	continue
 						#f = open('store.p', 'wb')
