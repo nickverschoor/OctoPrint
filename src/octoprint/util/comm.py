@@ -1015,7 +1015,7 @@ class MachineCom(object):
 					except NameError:
 						old_output = "9999"
 
-					if old_output == "9999":
+					#if old_output == "9999":
 						#self._changeState(self.STATE_OPERATIONAL)
 
 					self._do_send_without_checksum("status_res") #TODO: Test it!
