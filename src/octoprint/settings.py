@@ -93,7 +93,7 @@ default_settings = {
 		"additionalPorts": [],
 		"longRunningCommands": ["G4", "G28", "G29", "G30", "G32", "M400", "M226"],
 		"checksumRequiringCommands": ["M110"],
-		"helloCommand": "M110 N0",
+		"helloCommand": "",    #"M110 N0"
 		"disconnectOnErrors": False,
 		"ignoreErrorsFromFirmware": False,
 		"logResends": True,
@@ -221,7 +221,7 @@ default_settings = {
 		"components": {
 			"order": {
 				"navbar": ["settings", "systemmenu", "login", "plugin_announcements"],
-				"sidebar": ["state", "files"], #"sidebar": ["connection", "state", "files"], 
+				"sidebar": ["state", "files"], #"sidebar": ["connection", "state", "files"],
 				"tab": ["temperature", "control", "gcodeviewer", "terminal", "timelapse"],
 				"settings": [
 					"section_printer", "serial", "printerprofiles", "temperatures", "terminalfilters", "gcodescripts",
