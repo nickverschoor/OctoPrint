@@ -1055,6 +1055,8 @@ class MachineCom(object):
 								self._log("Printer resumed by firmware...")
 
 					old_output = debugging_output
+
+					break
 					#else:
 					#	continue
 						#f = open('store.p', 'wb')
