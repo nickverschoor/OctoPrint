@@ -92,7 +92,7 @@ default_settings = {
 		"maxWritePasses": 5,
 		"additionalPorts": [],
 		"longRunningCommands": ["G4", "G28", "G29", "G30", "G32", "M400", "M226"],
-		"checksumRequiringCommands": ["M110"],
+		"checksumRequiringCommands": ["M110","client_ready"],
 		"helloCommand": "M110 N0",    #"M110 N0"
 		"disconnectOnErrors": False,
 		"ignoreErrorsFromFirmware": False,
