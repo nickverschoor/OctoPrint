@@ -1028,7 +1028,8 @@ class MachineCom(object):
 
 					old_output = debugging_output
 
-				
+				else:
+					continue
 
 				def convert_line(line):
 					if line is None:
