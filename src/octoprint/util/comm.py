@@ -1027,7 +1027,7 @@ class MachineCom(object):
 
 					old_output = debugging_output
 
-					line = None
+					#line = None
 
 				#else:
 				#	continue
