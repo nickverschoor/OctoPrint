@@ -982,31 +982,6 @@ class MachineCom(object):
 					self._consecutive_timeouts = 0
 					self._timeout = get_new_timeout("communication", self._timeout_intervals)
 
-				##~~ debugging output handling
-				#if line.startswith("//"):
-				#	debugging_output = line[2:].strip()
-				#	if debugging_output.startswith("action:"):
-				#		action_command = debugging_output[len("action:"):].strip()
-
-				#		if action_command == "pause":
-				#			self._log("Pausing on request of the printer...")
-				#			self.setPause(True)
-				#		elif action_command == "resume":
-				#			self._log("Resuming on request of the printer...")
-				#			self.setPause(False)
-				#		elif action_command == "disconnect":
-				#			self._log("Disconnecting on request of the printer...")
-				#			self._callback.on_comm_force_disconnect()
-				#		else:
-				#			for hook in self._printer_action_hooks:
-				#				try:
-				#					self._printer_action_hooks[hook](self, line, action_command)
-				#				except:
-				#					self._logger.exception("Error while calling hook {} with action command {}".format(self._printer_action_hooks[hook], action_command))
-				#					continue
-				#	else:
-				#		continue
-
 				if line.startswith("#"):
 					debugging_output = line[len("#"):].strip()
 
@@ -1015,11 +990,7 @@ class MachineCom(object):
 					except NameError:
 						old_output = "9999"
 
-					if old_output == "9999" and debugging_output == "0000":
-						self._changeState(self.STATE_OPERATIONAL)
-
 					self._do_send_without_checksum("status_res") #TODO: Test it!
-
 
 					if old_output != debugging_output:
 						if debugging_output.startswith("00") and old_output.startswith("025"):
