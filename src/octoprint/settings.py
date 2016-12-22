@@ -93,7 +93,7 @@ default_settings = {
 		"additionalPorts": [],
 		"longRunningCommands": ["G4", "G28", "G29", "G30", "G32", "M400", "M226"],
 		"checksumRequiringCommands": ["M110"],
-		"helloCommand": "client_ready",    #"M110 N0"
+		"helloCommand": "M110 N0",    #"M110 N0"
 		"disconnectOnErrors": False,
 		"ignoreErrorsFromFirmware": False,
 		"logResends": True,
@@ -280,6 +280,7 @@ default_settings = {
 	"scripts": {
 		"gcode": {
 			"afterPrintCancelled": "; disable motors\nM84\n\n;disable all heaters\n{% snippet 'disable_hotends' %}\n{% snippet 'disable_bed' %}\n;disable fan\nM106 S0",
+            "afterPrinterConnected": "client_ready",
 			"snippets": {
 				"disable_hotends": "{% for tool in range(printer_profile.extruder.count) %}M104 T{{ tool }} S0\n{% endfor %}",
 				"disable_bed": "{% if printer_profile.heatedBed %}M140 S0\n{% endif %}"

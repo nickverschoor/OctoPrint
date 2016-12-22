@@ -983,29 +983,29 @@ class MachineCom(object):
 					self._timeout = get_new_timeout("communication", self._timeout_intervals)
 
 				##~~ debugging output handling
-#				if line.startswith("//"):
-#					debugging_output = line[2:].strip()
-#					if debugging_output.startswith("action:"):
-#						action_command = debugging_output[len("action:"):].strip()
-#
-#						if action_command == "pause":
-#							self._log("Pausing on request of the printer...")
-#							self.setPause(True)
-#						elif action_command == "resume":
-#							self._log("Resuming on request of the printer...")
-#							self.setPause(False)
-#						elif action_command == "disconnect":
-#							self._log("Disconnecting on request of the printer...")
-#							self._callback.on_comm_force_disconnect()
-#						else:
-#							for hook in self._printer_action_hooks:
-#								try:
-#									self._printer_action_hooks[hook](self, line, action_command)
-#								except:
-#									self._logger.exception("Error while calling hook {} with action command {}".format(self._printer_action_hooks[hook], action_command))
-#									continue
-#					else:
-#						continue
+				#if line.startswith("//"):
+				#	debugging_output = line[2:].strip()
+				#	if debugging_output.startswith("action:"):
+				#		action_command = debugging_output[len("action:"):].strip()
+
+				#		if action_command == "pause":
+				#			self._log("Pausing on request of the printer...")
+				#			self.setPause(True)
+				#		elif action_command == "resume":
+				#			self._log("Resuming on request of the printer...")
+				#			self.setPause(False)
+				#		elif action_command == "disconnect":
+				#			self._log("Disconnecting on request of the printer...")
+				#			self._callback.on_comm_force_disconnect()
+				#		else:
+				#			for hook in self._printer_action_hooks:
+				#				try:
+				#					self._printer_action_hooks[hook](self, line, action_command)
+				#				except:
+				#					self._logger.exception("Error while calling hook {} with action command {}".format(self._printer_action_hooks[hook], action_command))
+				#					continue
+				#	else:
+				#		continue
 
 				if line.startswith("#"):
 					debugging_output = line[len("#"):].strip()
@@ -1056,14 +1056,8 @@ class MachineCom(object):
 
 					old_output = debugging_output
 
-					break
-					#else:
-					#	continue
-						#f = open('store.p', 'wb')
-					#pickle.dump(debugging_output, open('store.p', 'wb'), protocol=pickle.HIGHEST_PROTOCOL)
-					#test_debug = pickle.load(open('store.p', 'rb'), protocol=pickle.HIGHEST_PROTOCOL)
-					#self._log(test_debug)
-						#f.close()
+				else:
+					continue
 
 				def convert_line(line):
 					if line is None:
