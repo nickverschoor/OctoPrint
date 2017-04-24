@@ -990,7 +990,7 @@ class MachineCom(object):
 					except NameError:
 						old_output = "9999"
 
-					self._do_send_without_checksum("status_res") #TODO: Test it!
+					#self._do_send_without_checksum("status_res") #TODO: Test it!
 
 					if old_output != debugging_output:
 						if debugging_output.startswith("00") and old_output.startswith("025"):
