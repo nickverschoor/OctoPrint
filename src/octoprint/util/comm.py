@@ -1000,29 +1000,34 @@ class MachineCom(object):
 							self._log("Printer idle...")
 						elif debugging_output.startswith("0001"):
 							self._log("Printer running...")
+						elif debugging_output.startswith("0002"):
+							self._log("Printer printing...")
 						elif debugging_output.startswith("01"):
 							action_command = debugging_output[len("01"):].strip()
 							self._log("Printer halted...")
 						elif debugging_output.startswith("020"):
 							action_command = debugging_output[len("020"):].strip()
 							self.setPause(True)
-							if action_command == "0":
+							if debugging_output.startswith("0"):
 								self._log("Printer paused...")
-							elif action_command == "1":
+							elif debugging_output.startswith("1"):
 								self._log("Printer paused by user...")
-							elif action_command == "2":
+							elif debugging_output.startswith("2"):
 								self._log("Printer paused due out of filament...")
-							elif action_command == "3":
+							elif debugging_output.startswith("3"):
 								self._log("Printer paused due filament slip(will try auto-resume)...")
-							elif action_command == "4":
+							elif debugging_output.startswith("4"):
 								self._log("Printer paused due temp warning...")
+							elif debugging_output.startswith("5"):
+								location = action_command[len("5-"):].strip()
+								self._log("Printer paused due i2c at "+location)
 						elif debugging_output.startswith("025"):
 							action_command = debugging_output[len("025"):].strip()
-							if action_command == "0":
+							if debugging_output.startswith("0"):
 								self._log("Printer resumed...")
-							elif action_command == "1":
+							elif debugging_output.startswith("1"):
 								self._log("Printer resumed by user...")
-							elif action_command == "2":
+							elif debugging_output.startswith("2"):
 								self._log("Printer resumed by firmware...")
 
 					old_output = debugging_output
